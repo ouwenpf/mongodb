@@ -42,8 +42,8 @@ source ~/.bash_profile
 mongod  -f /data/mongodb/mongodb27017/conf/mongodb.conf
 
 
-要启用自由监视，请运行以下命令：db.enableFreeMonitoring（）
-要永久禁用此提醒，请运行以下命令：db.disableFreeMonitoring（）
+要启用自由监视，请运行以下命令：db.enableFreeMonitoring()
+要永久禁用此提醒，请运行以下命令：db.disableFreeMonitoring()
 
 
 use admin
