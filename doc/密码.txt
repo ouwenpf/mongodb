@@ -1,2 +1,3 @@
 Redis:www.itpux8802.com
 MongoDB:www.itpux8803.com
+mysql分区:www.itpux7702.com

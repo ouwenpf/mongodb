@@ -14,11 +14,12 @@ show dbs 查询所以库,如果没有collections就不会显示
 db 显示当前所在的库
 db.dropDatabase删除当的前库
 db.shutdownServer()关闭数据库 use admin可以在127.0.0.1登陆进来才关闭
+show collections
 
 
 db.test1.insert()在test1中插入数据
 db.test1.find()查询test1中的数据
-db.test1.remove()在test1中删除数据
+db.test1.deleteMany({})在test1中删除数据
 db.test1.drop()删除test1
 
 db.test1.count()查询test1行数
@@ -30,11 +31,17 @@ db.test1.totalIndexSize()查询test1索引大小默认16K
 db.serverStatus().connections;当前数据库的连接信息
 
 
-for(i=1;i<=3000;i++) db.test1.insert({uid:i,name:'hukey',age:23})
+
+use test1
+db.test1.find().pretty()
+db.test1.deleteMany({})
+db.test1.drop()
+for(i=1;i<=10;i++) db.test1.insertOne({uid:i,name:'hukey',age:23})
 db.test1.createIndex({"uid":1}); #建立索引  1表示升序,-1表示倒序
 db.test1.find({"uid":"test1"}).explain(); #查看索引
 db.test1.dropIndex({"uid":1}); #删除索引
-for(i=1;i<=300;i++) db.test1.insert({uid:i,name:"test"+i,age:i})
+for(i=1;i<=10;i++) db.test1.insertOne({uid:i,name:"test"+i,age:i})
+
 
 ```
 - 管理命令
@@ -61,5 +68,9 @@ userAdminAnyDatabase、dbAdminAnyDatabase
 - mongodb常用的工具
 ```
 
+
+
+./mongodump -uroot -h192.168.0.136 -proot --port 27017 --authenticationDatabase admin -d test  -o ./backup
+mongorestore -h 192.168.0.136 --port 27022 --nsInclude="test.*"  backup/test
 
 ```
